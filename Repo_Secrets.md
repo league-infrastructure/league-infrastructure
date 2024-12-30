@@ -46,7 +46,7 @@ You can also encrypt other files by adding them to the same `.gitattributes` fil
 Now that you've defined the files to encrypt, commit them to the repository. They will be encrypted before being stored:
 
 ```bash
-git add path/to/secrets.json
+git add secrets/*
 git commit -m "Add encrypted secrets"
 ```
 
@@ -55,7 +55,7 @@ git commit -m "Add encrypted secrets"
 To allow team members to unlock the repository and access the encrypted files, export the encryption key:
 
 ```bash
-git-crypt export-key /path/to/keyfile
+git-crypt export-key secrets.key
 ```
 
 Share the key securely with your team (e.g., via a secure file transfer tool).
