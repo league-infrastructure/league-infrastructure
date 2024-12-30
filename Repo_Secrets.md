@@ -62,11 +62,13 @@ Share the key securely with your team (e.g., via a secure file transfer tool).
 
 ### 6. Unlock Repository for Team Members
 
-When another team member clones the repository, they can unlock the encrypted files by importing the key you provided:
+When another team member clones the repository, they can unlock the encrypted files by importing the key you provided. 
 
-```bash
-git-crypt unlock /path/to/keyfile
-```
+Typically this means: 
+
+  1. Share the LastPass password note with the developer.
+  2. The developer downloads the `secrets.key` file and copies it into the repo root directory.
+  3. The dev runs: `git-crypt unlock secrets.key`
 
 Once unlocked, they can view, edit, and commit encrypted files as if they were unencrypted.
 
