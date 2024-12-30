@@ -1,13 +1,17 @@
 
 # Managing Secrets with `git-crypt`
 
-This repository uses [`git-crypt`](https://github.com/AGWA/git-crypt) to securely encrypt sensitive files, such as credentials, API keys, and configuration files, within the Git repository.
+This repository uses [`git-crypt`](https://github.com/AGWA/git-crypt) to securely encrypt 
+sensitive files, such as credentials, API keys, and configuration files, within 
+the Git repository.
 
+*Note* once you add the files, re-encryption will be automatic. So, there is a step for 
+de-crypting them, but not for encrypting them. Just use git normally. 
 
 ## Retrevial of the secrets
 
 The key for the encryption is stored the The League's LastPass account, in a
-Secure Note with the name of the repository. It shoudl be in the shared "Repository Secrets" folder. 
+Secure Note with the name of the repository. It should be in the shared "Repository Secrets" folder. 
 
 ## Setup
 
