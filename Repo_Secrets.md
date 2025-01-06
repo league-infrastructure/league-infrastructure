@@ -101,8 +101,9 @@ does not persist in the container.
 1. In the LastPass folder 'Repository Secrets` get the note 'jointheleague-it Github Clone Only Token`
   This note has a Github token that can only reat repos, on the jointheleague-it account.
 2. Put the token in the file `secret/git_token.txt`
-3. Add a `secrets` section to `docker-compose.yaml` file. See below.
-4. Add a `RUN` statement to your docker file that references the secret. 
+3. Add a `secrets` section to the bottom `docker-compose.yaml` file. See below.
+4. Add a `secrets` section to the build instructions for a service. See below. 
+5. Add a `RUN` statement to your docker file that references the secret. 
 
 This does at the bottom of `docker-compose.yaml`
 
@@ -110,6 +111,16 @@ This does at the bottom of `docker-compose.yaml`
 secrets:
   github_token:
     file: ./secrets/github_token.txt
+```
+
+Then reference it from the `build` section of a service that will use the secret
+
+```yaml
+  cron:
+    build:
+      context: cron-app
+      secrets:
+        - github_token
 ```
 
 Here is how you run with the secret ( loaded from the file into an env var ) in your `Dockerfile`
