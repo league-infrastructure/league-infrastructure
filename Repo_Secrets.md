@@ -49,6 +49,11 @@ Now that you've defined the files to encrypt, commit them to the repository. The
 git add secrets/*
 git commit -m "Add encrypted secrets"
 ```
+To see which files are encrypted, run:
+
+```bash
+git-crypt status | grep -v not
+```
 
 ### 5. Distribute Access Keys
 
