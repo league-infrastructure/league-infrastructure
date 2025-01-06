@@ -113,10 +113,6 @@ RUN --mount=type=secret,id=github_token GITHUB_TOKEN=$(cat /run/secrets/github_t
     git clone https://${GITHUB_TOKEN}@github.com/league-infrastructure/leaguesync.git /opt/app/leaguesync
 ```
 
-```
-
-
-
 ## Troubleshooting
 
 If you encounter issues with `git-crypt`, consult the [official documentation](https://github.com/AGWA/git-crypt) or seek help in the repository's issues section.
