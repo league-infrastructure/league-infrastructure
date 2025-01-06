@@ -86,6 +86,37 @@ git-crypt rekey
 
 After running this command, distribute the new key to authorized users.
 
+## Installing private repos in Dockerfiles. 
+
+To install a private repo in a docker files ( which is most often the `leaguesync`
+library ) you can use a Docker compose feature to mount a file with a Github token 
+from the repo in the docker container, then run the clone operation. The secret
+does not persist in the container. 
+
+1. In the LastPass folder 'Repository Secrets` get the note 'jointheleague-it Github Clone Only Token`
+  This note has a Github token that can only reat repos, on the jointheleague-it account.
+2. Put the token in the file `secret/git_token.txt`
+3. Add a `secrets` section to `docker-compose.yaml` file. See below.
+4. Add a `RUN` statement to your docker file that references the secret. 
+
+This does at the bottom of `docker-compose.yaml`
+
+```yaml
+secrets:
+  github_token:
+    file: ./secrets/github_token.txt
+```
+
+Here is how you run with the secret ( loaded from the file into an env var ) in your `Dockerfile`
+```Dockerfile
+RUN --mount=type=secret,id=github_token GITHUB_TOKEN=$(cat /run/secrets/github_token) && \
+    git clone https://${GITHUB_TOKEN}@github.com/league-infrastructure/leaguesync.git /opt/app/leaguesync
+```
+
+```
+
+
+
 ## Troubleshooting
 
 If you encounter issues with `git-crypt`, consult the [official documentation](https://github.com/AGWA/git-crypt) or seek help in the repository's issues section.
