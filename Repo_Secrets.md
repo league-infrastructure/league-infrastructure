@@ -114,7 +114,9 @@ secrets:
 
 Here is how you run with the secret ( loaded from the file into an env var ) in your `Dockerfile`
 ```Dockerfile
-RUN --mount=type=secret,id=github_token GITHUB_TOKEN=$(cat /run/secrets/github_token) && \
+RUN --mount=type=secret,id=github_token \
+    GITHUB_TOKEN=$(cat /run/secrets/github_token) && \
+    git config --global http.postBuffer 524288000 && \ # Fix nextwork failure / instability
     git clone https://${GITHUB_TOKEN}@github.com/league-infrastructure/leaguesync.git /opt/app/leaguesync
 ```
 
